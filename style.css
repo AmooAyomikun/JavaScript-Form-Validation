@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #0f172a;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 500px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.header p {
+    color: #cbd5f5;
+}
+
+.form-section {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.form-control {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-control label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-control input,
+.form-control textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #334155;
+    border-radius: 6px;
+    background: #0f172a;
+    color: #fff;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
+    border-color: #3b82f6;
+    outline: none;
+}
+
+#success-msg{
+    color: #22c55e;
+    /* position: absolute;
+    bottom: -18px; */
+    left: 0;
+    visibility: hidden;
+    font-size: 0.85rem;
+}
+
+.form-control small {
+    color: #f87171; 
+    position: absolute;
+    bottom: -18px;
+    left: 0;
+    visibility: hidden;
+    font-size: 0.85rem;
+}
+
+.form-control.success input,
+.form-control.success textarea {
+    border-color: #22c55e;
+}
+
+.form-control.error input,
+.form-control.error textarea {
+    border-color: #f87171;
+}
+
+.form-control.error small {
+    visibility: visible;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #3b82f6;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #2563eb;
+}
+
+
+@media (max-width: 400px) {
+    .form-section {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Contact Me</h1>
+            <p>Fill out the form below and I'll get back to you!</p>
+        </header>
+
+        
+        <form id="contact-form" class="form-section" novalidate>
+            <div class="form-control">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Amoo Ayomikun" required>
+                <small class="error-msg">Error message</small>
+            </div>
+
+            <div class="form-control">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="ayomikun@example.com" required>
+                <small class="error-msg">Error message</small>
+            </div>
+
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <small class="error-msg">Error message</small>
+            </div>
+
+            <div class="form-control">
+                <label for="confirm-password"> Confirm Password</label>
+                <input type="password" id="confirm-password" name="password" placeholder="Enter your password" required>
+                <small class="error-msg">Error message</small>
+            </div>
+
+            <div class="form-control">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Type your message here..." rows="4" required></textarea>
+                <small class="error-msg">Error message</small>
+            </div>
+
+            <button type="submit" id="submit-btn">Send Message</button>
+            <small id="success-msg">Error message</small>
+        </form>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
