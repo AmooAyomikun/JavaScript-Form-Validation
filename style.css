@@ -70,12 +70,21 @@ body {
 }
 
 #success-msg{
-    color: #22c55e;
-    /* position: absolute;
-    bottom: -18px; */
     left: 0;
     visibility: hidden;
     font-size: 0.85rem;
+}
+
+.success{
+    color: #22c55e;
+}
+
+.successfull-msg{
+    color: #22c55e;
+}
+
+.error{
+    color: #f87171;
 }
 
 .form-control small {

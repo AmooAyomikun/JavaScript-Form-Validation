@@ -6,6 +6,7 @@ const confirmPasswordEl = document.getElementById('confirm-password')
 const errorMsgEl = document.querySelectorAll('.error-msg')
 const formEl = document.getElementById('contact-form')
 const successMsg = document.getElementById('success-msg')
+const submitBtnEl = document.getElementById('submit-btn')
 
 let isValid = true
 
@@ -22,7 +23,8 @@ function checkEmpty(){
         errorMsgEl[0].textContent = 'Enter your full name'
         isValid = false
     }else{
-        errorMsgEl[0].style.visibility = 'hidden'
+        errorMsgEl[0].style.visibility = 'visible'
+        errorMsgEl[0].innerHTML = '<i class="fa fa-check" style="color:#22c55e;">'
     }
 
     if(!emailInput){
@@ -54,13 +56,8 @@ function checkEmpty(){
         errorMsgEl[4].textContent = 'Enter your complementary message'
         isValid = false
     }else{
-        errorMsgEl[4].style.visibility = 'hidden'
-    }
-
-    if(isValid){
-        console.log('form is valid')
-    }else{
-        console.log('form is not valid');
+        errorMsgEl[4].style.visibility = 'visible'
+        errorMsgEl[4].innerHTML = '<i class="fa fa-check" style="color:#22c55e;">'
     }
 }
 
@@ -85,7 +82,8 @@ function emailFormat(){
     let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
     if(emailRegex.test(emailInput)){
-        errorMsgEl[1].style.visibility = 'hidden'
+        errorMsgEl[1].style.visibility = 'visible'
+        errorMsgEl[1].innerHTML = '<i class="fa fa-check" style="color:#22c55e;">'
     }else{
         errorMsgEl[1].style.visibility = 'visible'
         errorMsgEl[1].textContent = 'Enter a valid email address'
@@ -117,7 +115,8 @@ function passwordStrength(){
         errorMsgEl[2].textContent = 'Password must contain a special character'
         isValid = false
     }else {
-        errorMsgEl[2].style.visibility = 'hidden'
+        errorMsgEl[2].style.visibility = 'visible'
+        errorMsgEl[2].innerHTML = '<i class="fa fa-check" style="color:#22c55e;">'
     }
 }
 
@@ -134,9 +133,35 @@ function matchPassword(){
         errorMsgEl[3].textContent = 'Password does not match'
         isValid = false
     }else{
-        errorMsgEl[3].style.visibility = 'hidden'
+        errorMsgEl[3].style.visibility = 'visible'
+        errorMsgEl[3].innerHTML = '<i class="fa fa-check" style="color:#22c55e;">'
     }
 }
+
+function checkAllValid() {
+    let nameInput = nameEl.value.trim()
+    let emailInput = emailEl.value.trim()
+    let passwordInput = passwordEl.value.trim()
+    let confirmPasswordInput = confirmPasswordEl.value.trim()
+    let messageInput = messageEl.value.trim()
+
+    if(nameInput && emailInput && passwordInput && confirmPasswordInput && messageInput){
+        checkEmpty()
+
+        if(isValid){
+            submitBtnEl.style.opacity = ''
+            submitBtnEl.disabled = false
+        }else{
+            submitBtnEl.disabled = true
+            submitBtnEl.style.opacity = '0.5'
+        }
+    }else{
+        submitBtnEl.disabled = true
+        submitBtnEl.style.opacity = '0.5'
+    }
+}
+
+checkAllValid()
 
 formEl.addEventListener('submit', function(event){
     event.preventDefault()
@@ -144,11 +169,21 @@ formEl.addEventListener('submit', function(event){
 
     if(isValid){
         successMsg.style.visibility = 'visible'
+        successMsg.classList.remove('error')
+        successMsg.classList.add('success')
         successMsg.textContent = 'Form Submitted successfully'
+        errorMsgEl.forEach(function(errorMsg){
+            errorMsg.style.visibility = 'hidden'
+        })
+        setTimeout(() => {
+            successMsg.style.visibility = 'hidden'
+        }, 2000);
         formEl.reset()
+        checkAllValid()
     }else{
         successMsg.style.visibility = 'visible'
-        successMsg.style.color = 'red'
+        successMsg.classList.remove('success')
+        successMsg.classList.add('error')
         successMsg.textContent = 'Form not submitted check your inputs'
     }
 })
@@ -166,8 +201,11 @@ nameEl.addEventListener('input',function(){
     let nameInput = nameEl.value.trim()
 
     if(nameInput){
-        errorMsgEl[0].style.visibility = 'hidden'
+        errorMsgEl[0].style.visibility = 'visible'
+        errorMsgEl[0].innerHTML = '<i class="fa fa-check" style="color:#22c55e;">'
     }
+
+    checkAllValid()
 })
 
 emailEl.addEventListener('blur', function(){
@@ -187,6 +225,8 @@ emailEl.addEventListener('input', function(){
     if(emailInput){
         emailFormat()
     }
+
+    checkAllValid()
 })
 
 passwordEl.addEventListener('blur', function(){
@@ -212,8 +252,11 @@ passwordEl.addEventListener('input', function(){
         errorMsgEl[3].style.visibility = 'visible'
         errorMsgEl[3].textContent = 'Passwords no longer match'
     }else if(confirmPasswordInput){
-        errorMsgEl[3].style.visibility = 'hidden'
+        errorMsgEl[3].style.visibility = 'visible'
+        errorMsgEl[3].innerHTML = '<i class="fa fa-check" style="color:#22c55e;">'
     }
+
+    checkAllValid()
 })
 
 confirmPasswordEl.addEventListener('blur', function(){
@@ -227,10 +270,24 @@ confirmPasswordEl.addEventListener('blur', function(){
 
 confirmPasswordEl.addEventListener('input', function(){
     let confirmPasswordInput = confirmPasswordEl.value.trim()
-    let passwordInput = passwordEl.value.trim()
 
     if(confirmPasswordInput){
         matchPassword()
     }
+
+    checkAllValid()
+})
+
+messageEl.addEventListener('input', function(){
+    let messageInput = messageEl.value.trim()
+    let maxLength = messageEl.getAttribute('maxlength')
+    let currentLength = this.value.length
+
+    if(messageInput && currentLength < maxLength){
+        errorMsgEl[4].style.visibility = 'visible'
+        errorMsgEl[4].textContent = `${currentLength} / ${maxLength}`
+    }
+
+    checkAllValid()
 })
 
