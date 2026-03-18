@@ -6,6 +6,11 @@ The goal of the project is to practice DOM manipulation, event handling, and val
 
 The form validates multiple input fields including name, email, password, confirm password, and message, ensuring that all required information is entered correctly before the form is successfully submitted.
 
+**Demo**
+You can see a live demo of this app through the link
+
+https://amooayomikun.github.io/JavaScript-Form-Validation/
+
 **Features**
 
 Real-time form validation using JavaScript
